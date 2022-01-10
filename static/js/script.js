@@ -480,7 +480,7 @@
         "use strict";
         (function (t) {
             function i(t) {
-                new s.a("#typed", { stringsElement: "#typed-strings", typeSpeed: 70, backSpeed: 20, loop: !0, loopCount: 1 / 0 });
+                new s.a("#typed", { stringsElement: "#typed-strings", typeSpeed: 90,backDelay: 1000, backSpeed: 20, loop: !0, loopCount: 1 / 0 });
             }
             function o() {
                 t('nav li a[href=".' + location.pathname + '"]').addClass("active"), "/" == location.pathname && t('nav li a[href="./index.html"]').addClass("active");
