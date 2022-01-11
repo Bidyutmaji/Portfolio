@@ -5516,7 +5516,7 @@
             return e;
         }
 
-        // C:\Radha-Madhava\breedify\static\assets\rm-apc-profile.ico
+        // C:\Radha-Madhava\breedify\static\assets\rm-gn-apc-jps.png
         // C:\Radha-Madhava\breedify\static\js\script.js
         var r = {
             "../assets/images/": "4FPD",
