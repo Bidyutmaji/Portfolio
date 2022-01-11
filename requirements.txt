@@ -5,3 +5,4 @@ pandas
 django
 django-heroku
 gunicorn
+pillow
