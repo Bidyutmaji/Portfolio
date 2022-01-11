@@ -8,15 +8,14 @@ if __name__ != '__main__':
     import tensorflow_hub as hub
     import os
     import numpy as np
-    import pandas as pd
 
 
     def breed(request):
         for file in os.listdir('media'):
-            os.remove((os.path.join('media', file)))
+            if 'rk'in file:
+                os.remove((os.path.join('media', file)))
         file = default_storage.save('rk.jpg', request.FILES['SentFile'])
         # file_path = default_storage.url(file)
-        image_path = os.listdir(settings.MEDIA_ROOT)
 
         image = tf.io.read_file('./media/rk.jpg')
         image = tf.image.decode_image(image, channels=3)
@@ -24,11 +23,35 @@ if __name__ != '__main__':
         image = tf.expand_dims( tf.image.resize(image, size=[224,224]), axis=0)
 
         model_path = os.path.join(settings.MODELS, 'dog_breeds_mobilenetv2_Adam_v1_.h5')
-        label_path = os.path.join(settings.MODELS, 'labels.csv')
+        apc = os.path.join(settings.MODELS, 'jps.txt')
 
-        breeds_name = np.unique(pd.read_csv(label_path).breed.to_numpy())
+        with open (apc, 'r') as f:
+            breeds_name = np.array(f.read().split(sep=','))
         model = tf.keras.models.load_model(model_path, custom_objects={'KerasLayer':hub.KerasLayer})
 
         prediction = model.predict(image)
         pred_breed = breeds_name[np.argmax(prediction)]
-        return pred_breed, image_path[0]
+        pred_breed = pred_breed.replace("'",'')
+        return pred_breed
+
+
+def fruits(request):
+    for file in os.listdir('media'):
+        if 'gn' in file:
+            os.remove(os.path.join('media', file))
+    file = default_storage.save('gn.jpg', request.FILES['SentFile'])
+    print(file)
+    model_path = os.path.join(settings.MODELS, 'mobilenet_v2_130_224.h5')
+    model = tf.keras.models.load_model(model_path, custom_objects={'KerasLayer':hub.KerasLayer})
+    jps = os.path.join(settings.MODELS, 'apc.txt')
+    with open(jps, 'r') as f:
+        classes = np.array(f.read().split(sep=','))
+
+    image = tf.keras.utils.load_img('./media/gn.jpg',target_size=(224,224))
+    image_array = tf.keras.utils.img_to_array(image)
+    image_ex = tf.expand_dims(image_array, 0)
+
+    pred = model.predict(image_ex)
+    pred_class = classes[np.argmax(pred)]
+    # pred_conf = round()
+    return pred_class

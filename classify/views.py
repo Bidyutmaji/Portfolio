@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from tensorflow.python.eager.context import context
 from classify.forms import ContactForm
-from classify.predict import breed
+from classify.predict import breed, fruits
 
 def index(request):
     return render(request, 'classify/index.html', context={})
@@ -29,12 +30,23 @@ def breedify(request):
     
     hk = 'HARE KRSNA'
     if request.method == 'POST':
-        pred_breed, image_path = breed(request)
+        pred_breed = breed(request)
         context = {
             'pred_breed': pred_breed,
-            'hk':hk,
-            'image_path': image_path
+            'hk':hk
         }
         return render(request, 'classify/breedify.html', context)
     else:
         return render(request, 'classify/breedify.html')
+
+def fruitsify(request):
+    rs = 'Radhe Shyam'
+    if request.method == 'POST':
+        pred_class = fruits(request)
+        context = {
+            'rs':rs,
+            'pred_class':pred_class
+        }
+        return render(request, 'classify/fruitsify.html', context)
+    else:
+        return render(request, 'classify/fruitsify.html')

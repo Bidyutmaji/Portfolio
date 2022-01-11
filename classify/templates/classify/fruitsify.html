@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="description" name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Mashup templates have been developped by Orson.io team" name="author">
+  {% load static %}
+  
+  <link href="{% static 'assets/rm-apc-profile.ico' %}" rel="icon">
+
+  <title>|| Fruitsify ||</title>  
+<link href="{% static 'css/style.css' %}" rel="stylesheet"
+
+></head>
+
+<body class="">
+<div id="site-border-left"></div>
+<div id="site-border-right"></div>
+<div id="site-border-top"></div>
+<div id="site-border-bottom"></div>
+ <!-- Add your content of header -->
+<header>
+  <nav class="navbar  navbar-fixed-top navbar-default">
+    <div class="container">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav ">
+          <li><a href="{% url 'index' %}" title="">01 : Home</a></li>
+          <li><a href="{% url 'works' %}" title="">02 : Works</a></li>
+          <li><a href="{% url 'about' %}" title="">03 : About me</a></li>
+          <li><a href="{% url 'contact' %}" title="">04 : Contact</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right navbar-small visible-md visible-lg">
+          <li><a href="{% url 'breedify' %}" title="" >001</a></li>
+          <li><a href="{% url 'fruitsify' %}" title="" class="active">002</a></li>
+          <li><a href="#" title="">003</a></li>
+        </ul>
+
+
+      </div> 
+    </div>
+  </nav>
+</header>
+
+<div class="section-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <img src="{% static 'assets/images/fruits_1.jpg'%}" class="img-responsive" alt="">
+        <div class="card-container">
+          <div class="text-center">
+            <h1 class="h2">Fruitsify: Fruit Classifier</h1>
+          </div>
+          <p>Different types of Fruits and vegitables classification by just “looking” into its image.</p>
+          <p>In this project, I have developed a model which predicts the fruit class from the uploaded image using the Pretrained
+             <b>MobileNet V2</b> with an accuracy of <b>97.64%</b>. </p>
+        </div>
+      </div>
+
+
+
+      
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="row">
+            <div class="col-xs-12 col-md-5">
+              <form method='POST' enctype='multipart/form-data'>
+                {% csrf_token %}
+                <div class="form-group">
+                  <input class="form-control" type="file" id="formFile" name='SentFile'>
+                </div>
+                  <input type="submit" class="btn btn-default btn-lg" value='Predict'>
+               </form>
+               <br>
+               {% if pred_class %}
+               <p>The Fruit is: <b>{{pred_class}}</b>
+                <br>
+                <a href="https://www.google.com/search?tbm=isch&q={{pred_class}}" class="btn btn-default">Google Image Search</a>
+               {% endif %}
+            </div>
+            <div class="col-xs-12 col-md-4">{% if pred_class %}
+              <img src="{{MEDIA_URL}}/media/gn.jpg" class="img-responsive" alt="">
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+     navActivePage();
+  });
+</script>
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+</html>

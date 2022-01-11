@@ -43,7 +43,7 @@
 
         <ul class="nav navbar-nav navbar-right navbar-small visible-md visible-lg">
           <li><a href="{% url 'breedify' %}" title="" class="active">001</a></li>
-          <li><a href="#" title="">002</a></li>
+          <li><a href="{% url 'fruitsify' %}" title="" >002</a></li>
           <li><a href="#" title="">003</a></li>
         </ul>
 
@@ -57,13 +57,13 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <img src="{% static 'assets/images/work001-01.jpg'%}" class="img-responsive" alt="">
+        <img src="{% static 'assets/images/w_dog.jpg'%}" class="img-responsive" alt="">
         <div class="card-container">
           <div class="text-center">
             <h1 class="h2">Breeedify: Dog Breed Classifier</h1>
           </div>
           <p>Breed classification of a dog by just “looking” into its image.</p>
-          <p>In this project, I have developed a model which predicts the breed from the Dog’s image using the Pretrained
+          <p>In this project, I have developed a model which predicts the breed from the Dog's image using the Pretrained
              <b>MobileNet V2</b> with an accuracy of <b>81.98%</b>. </p>
         </div>
       </div>
@@ -83,12 +83,16 @@
                   <input type="submit" class="btn btn-default btn-lg" value='Predict'>
                </form>
                <br>
-               <p>The breed is:  <b>{{pred_breed}}</b></p>
+               {% if pred_breed %}
+               <p>The breed is: <b>{{pred_breed}}</b>
+               <br>
+               <a href="https://www.google.com/search?tbm=isch&q={{pred_breed}}" class="btn btn-default">Google Image Search</a>
+               {% endif %}
             </div>
             <div class="col-xs-12 col-md-4">
-              {% comment %} {% load media %} {% endcomment %}
-              {% comment %} <p>{{image_path}}</p> {% endcomment %}
-              <img src="{{MEDIA_URL}}/media/{{image_path}}" class="img-responsive" alt="">
+              {% if pred_breed %}
+              <img src="{{MEDIA_URL}}/media/rk.jpg" class="img-responsive" alt="">
+              {% endif %}
             </div>
           </div>
         </div>

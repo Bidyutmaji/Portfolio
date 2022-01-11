@@ -1,5 +1,5 @@
 from django.urls import path
-from classify.views import breedify, index, contact, about, works
+from classify.views import breedify, index, contact, about, works, fruitsify
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -9,4 +9,5 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('works/', works, name='works'),
     path('works/breedify', breedify, name='breedify'),
+    path('works/fruitsify', fruitsify, name='fruitsify')
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
