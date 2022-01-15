@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from classify import urls
+from Imageify import urls  as im_url
 
 urlpatterns = [
     path('',include(urls)),
+    path('', include(im_url)),
     path('admin/', admin.site.urls),
 ]

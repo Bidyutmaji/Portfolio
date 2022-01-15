@@ -6,6 +6,37 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
+.cursor {
+    display: inline-block;
+    background-color: rgb(241, 241, 241);
+    margin-left: 0.1rem;
+    width: 3px;
+    animation: blink 1s infinite;
+  }@keyframes blink {
+    0%  { background-color: #ccc; }
+    49% { background-color: #ccc; }
+    50% { background-color: transparent; }
+    99% { background-color: transparent; }
+    100%  { background-color: #ccc; }
+  }
+  span{
+    /* font-size: 48px; */
+    font-weight: 800;
+    /* background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%); */
+    background: -webkit-linear-gradient(220deg, hsla(23, 89%, 55%, 1) 0%, hsla(0, 100%, 55%, 1) 16%, hsla(323, 100%, 55%, 1) 30%, hsla(261, 93%, 56%, 1) 48%, hsla(212, 83%, 66%, 1) 59%, hsla(185, 79%, 62%, 1) 68%, hsla(148, 68%, 60%, 1) 79%, hsla(109, 52%, 56%, 1) 90%, hsla(121, 52%, 56%, 1) 100%);
+    background-size: 900% 900%; -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    animation: rainbow 5s ease infinite;
+
+}
+
+@keyframes rainbow { 
+    0% { background-position: 0% 100%; }
+    50% { background-position: 100% 200%; }
+    100% {background-position: 0% 100%; }
+  }
+
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
@@ -4735,7 +4766,6 @@ body.minimal {
     vertical-align: middle;
     display: table-cell;
 }
-.white-text-container h1,
 .white-text-container h2,
 .white-text-container h3,
 .white-text-container h4,
