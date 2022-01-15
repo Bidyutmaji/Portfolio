@@ -60,7 +60,7 @@ def imageify(request):
                     zf.write(path, os.path.basename(path))
                 except HTTPError:
                     pass
-                zf.close()
+            zf.close()
             context={
                 'image':image_url[0],
                 'file': file,
