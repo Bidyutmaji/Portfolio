@@ -30,8 +30,6 @@ def imageify(request):
         Check out https://bidyutmaji.herokuapp.com/.
 
         Thanks For Downloading.
-
-
         '''
         try:
             url_content = r.get(url).json()
