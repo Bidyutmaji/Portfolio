@@ -58,12 +58,23 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-sm-4">
+          <a href="{% url 'imageify' %}" title="" class="image-project-hover">
+            <img src="{% static 'assets/images/imageify.jpg'%}" alt="" class="img-responsive">
+          </a>
+          <div class="card-container card-container-lg">
+            <h4>001/003</h4>
+            <h3>Imageify: The Image Dowloader</h3>
+            <p>Download multiple beautiful images with ease.</p>
+            <a href="{% url 'imageify' %}" title="" class="btn btn-default" >Discover</a>
+          </div>
+        </div>
          <div class="col-sm-4">
            <a href="{% url 'breedify' %}" title="" class="image-project-hover">
              <img src="{% static 'assets/images/dog.jpg'%}" alt="" class="img-responsive">
             </a>
             <div class="card-container card-container-lg">
-              <h4>001/003</h4>
+              <h4>002/003</h4>
               <h3>Breeedify: Dog Breed Classifier</h3>
               <p>Breed classification of a dog by just “looking” into its image.</p>
               <a href="{% url 'breedify' %}" title="" class="btn btn-default">Discover</a>
@@ -74,29 +85,15 @@
               <img src="{% static 'assets/images/fruits.jpg'%}" alt="" class="img-responsive">
             </a>
             <div class="card-container card-container-lg">
-              <h4>002/003</h4>
+              <h4>003/003</h4>
               <h3>Fruitsify: Fruit Classifier</h3>
               <p>Fruits and vegitables classification by just “looking” into its image.</p>
               <a href="{% url 'fruitsify' %}" title="" class="btn btn-default" >Discover</a>
             </div>
           </div>
-          <div class="col-sm-4">
-            <a href="#" title="" class="image-project-hover">
-                        <img src="{% static 'assets/images/imageify.jpg'%}" alt="" class="img-responsive">
-                      </a>
-                      <div class="card-container card-container-lg">
-                        <h4>003/003</h4>
-                        <h3>Imageify: The Image Dowloader</h3>
-                        <p>Download multiple beautiful images with ease.</p>
-                        <a href="{% url 'imageify' %}" title="" class="btn btn-default" >Discover</a>
-                      </div>
-                    </div>
-                  </div>
-              </div>
+        </div>
+      </div>
     </div>
-
-
-
     </div>
   </div>
 </div>

@@ -4,7 +4,7 @@ const cursorSpan = document.querySelector(".cursor");
 const textArray = [
     "I'M BIDYUT MAJI.",
     "My Fingers Loves Typing Python...",
-    "And Mind loves Machine Learning..."];
+    "And Mind Loves Machine Learning..."];
 const typingDelay = 200;
 const erasingDelay = 100;
 const newTextDelay = 2000; // Delay between current and next text

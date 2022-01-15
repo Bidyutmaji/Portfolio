@@ -25,6 +25,14 @@ def imageify(request):
         term = request.POST.get('term')
         key = 'Cx-w98RTghUSdri6MQYkoJ9EHajtcVXgEtFk1iPB45A'
         url = 'https://api.unsplash.com/search/photos/?query='+term+'&per_page=25&client_id='+key
+        text = '''
+        I'm Bidyut Maji...
+        Check out https://bidyutmaji.herokuapp.com/.
+
+        Thanks For Downloading.
+
+
+        '''
         try:
             url_content = r.get(url).json()
             link = url_content['results']
@@ -38,8 +46,11 @@ def imageify(request):
             
             file = term+'.zip'
             zip_file = os.path.join(folder_root, file)
+            text_path = os.path.join(folder_root, term+'.txt')
+            with open(text_path, 'w') as f:
+                f.write(text)
             zf = zipfile.ZipFile(zip_file, 'w')
-            
+            zf.write(text_path)
             for i, item in enumerate(image_url, 1):
                 f_name = term+'_'+str(i)+'.jpg'
 
@@ -49,8 +60,7 @@ def imageify(request):
                     zf.write(path, os.path.basename(path))
                 except HTTPError:
                     pass
-            
-
+                zf.close()
             context={
                 'image':image_url[0],
                 'file': file,
