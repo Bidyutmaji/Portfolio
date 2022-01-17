@@ -35,10 +35,8 @@ def imageify(request):
             url_content = r.get(url).json()
             link = url_content['results']
             image_url = [image['urls']['regular'] for image in link]
-            # path = []
             folder_root = os.path.join(settings.MEDIA_ROOT, 'download')
 
-            # os.mkdir(folder_root)
             for file in os.listdir(folder_root):
                 os.remove(os.path.join(folder_root, file))
             
@@ -65,7 +63,6 @@ def imageify(request):
                 'term':term,
                 'image_count': i
                 }
-
             return render(request, 'Imageify/imageify.html', context)
         except ConnectionError:
            return render(request, 'Imageify/imageify.html')
