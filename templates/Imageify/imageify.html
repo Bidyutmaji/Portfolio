@@ -42,9 +42,9 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right navbar-small visible-md visible-lg">
-          <li><a href="{% url 'breedify' %}" title="" >001</a></li>
-          <li><a href="{% url 'fruitsify' %}" title="" >002</a></li>
-          <li><a href="{% url 'imageify' %}" title="" class="active">003</a></li>
+          <li><a href="{% url 'imageify' %}" title="" class="active">001</a></li>
+          <li><a href="{% url 'breedify' %}" title="" >002</a></li>
+          <li><a href="{% url 'fruitsify' %}" title="" >003</a></li>
         </ul>
 
 
@@ -88,7 +88,7 @@
                {% endif %}
             </div>
             <div class="col-xs-12 col-md-4">{% if file %}
-              <p><b>{{term}}</b> : Found only <b>{{image_count}}</b> & showing one sample image...</p>
+              <p><b>{{term}}</b> : Found <b>{{image_count}} images</b> & showing one sample...</p>
               <img src="{{image}}" class="img-responsive" alt="">
               {% endif %}
             </div>

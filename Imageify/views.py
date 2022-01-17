@@ -46,7 +46,7 @@ def imageify(request):
             with open(text_path, 'w') as f:
                 f.write(text)
             zf = zipfile.ZipFile(zip_file, 'w')
-            zf.write(text_path)
+            zf.write(text_path, os.path.basename(text_path))
             for i, item in enumerate(image_url, 1):
                 f_name = term+'_'+str(i)+'.jpg'
 
