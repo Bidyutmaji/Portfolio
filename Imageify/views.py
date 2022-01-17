@@ -1,24 +1,10 @@
-from email.mime import image
-import re
 from urllib.error import HTTPError
 from django.shortcuts import render
-from Imageify.froms import ImageSearch
 import requests as r
 import zipfile
 import wget
 from django.conf import settings
 import os 
-import shutil
-
-# Create your views here.
-
-# def getImage(request):
-    
-        
-#     print("RK+GN+APC+JPS")
-#     print(path)
-#     return image_url
-
 
 def imageify(request):
     api_key = os.getenv('API_KEY')
@@ -41,6 +27,8 @@ def imageify(request):
             link = url_content['results']
             image_url = [image['urls'][img_quality] for image in link]
             if image_url:
+                img_url = [image['urls']['regular'] for image in link]
+
                 folder_root = os.path.join(settings.MEDIA_ROOT, 'download')
 
                 for file in os.listdir(folder_root):
@@ -64,7 +52,7 @@ def imageify(request):
                         pass
                 zf.close()
                 context={
-                    'image':image_url[0],
+                    'image':img_url,
                     'file': file,
                     'term':term.title(),
                     'image_count': i

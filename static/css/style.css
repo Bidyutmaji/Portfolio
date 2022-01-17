@@ -39,7 +39,7 @@ span.cursor {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0;
-    animation: rainbow 5 ease infinite;
+    animation: rainbow 5s ease infinite;
 
 }
 
