@@ -6,7 +6,6 @@
     font-family: poppins;
     font-weight: 700;
     border-radius: 10px;
-    background: transparent;
     padding-left: 12px;
     padding-right: 12px;
     padding-bottom: 6px;
@@ -16,8 +15,8 @@
     background-size: 1000% 1000%; 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 80px;
-    animation: rainbow 20s ease infinite;
+    margin: 30px;
+    animation: rainbow 10s ease infinite;
 }
 
 span.cursor {
@@ -40,7 +39,7 @@ span.cursor {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0;
-    animation: rainbow 5s ease infinite;
+    animation: rainbow 5 ease infinite;
 
 }
 
