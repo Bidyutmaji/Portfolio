@@ -21,14 +21,14 @@ import shutil
 
 
 def imageify(request):
-    key = 'Cx-w98RTghUSdri6MQYkoJ9EHajtcVXgEtFk1iPB45A'
+    api_key = os.getenv('API_KEY')
 
     if request.method=="POST":
         term = request.POST.get('term')
         img_num = request.POST.get('num')
         img_quality = request.POST.get('quality')
         
-        url = 'https://api.unsplash.com/search/photos/?query='+term+'&per_page='+img_num+'&client_id='+key
+        url = 'https://api.unsplash.com/search/photos/?query='+term+'&per_page='+img_num+'&client_id='+api_key
         
         text = '''
         I'm Bidyut Maji...
@@ -46,7 +46,7 @@ def imageify(request):
                 for file in os.listdir(folder_root):
                     os.remove(os.path.join(folder_root, file))
                 
-                file = term+'.zip'
+                file = term.title()+'.zip'
                 zip_file = os.path.join(folder_root, file)
                 text_path = os.path.join(folder_root, term+'.txt')
                 with open(text_path, 'w') as f:
@@ -66,7 +66,7 @@ def imageify(request):
                 context={
                     'image':image_url[0],
                     'file': file,
-                    'term':term,
+                    'term':term.title(),
                     'image_count': i
                     }
                 return render(request, 'Imageify/imageify.html', context)

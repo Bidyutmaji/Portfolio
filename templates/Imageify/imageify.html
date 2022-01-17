@@ -79,7 +79,7 @@
                 </div>
                     <div class="row">
                       <div class="col-xs-12 col-md-4">
-                      <input class="form-control" type="number" placeholder="0-30" name='num' value='5' min='1' max="30">
+                      <input class="form-control" type="number" placeholder="1-30" name='num' value='5' min='1' max="30">
                       </div>
                       <div class="col-xs-12 col-md-4">
                         <select name="quality" class="form-control">
@@ -99,7 +99,8 @@
                {% endif %}
             </div>
             <div class="col-xs-12 col-md-4">{% if file %}
-              <p><b>{{term}}</b> : Found <b>{{image_count}} images</b> & showing one sample...</p>
+              <p><b>{{term}}</b>: Found images <b>{{image_count}}</b>
+              <br>Sample image:</p>
               <img src="{{image}}" class="img-responsive" alt="">
               {% endif %}
               {% if image_not_found %}
