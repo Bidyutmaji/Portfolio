@@ -62,14 +62,11 @@
           <div class="text-center">
             <h1 class="h2">Imageify: The Image Dowloader</h1>
           </div>
-          <p>Download <b>25</b> beautiful images with ease.</p>
-          <p>In this project, I have developed this tiny app makes it easy to download images from the brilliant <b>unsplash.com</b>.</p>
-          {% comment %} at a resolution that you specify </p> {% endcomment %}
+          <p>Download beautiful images with ease.</p>
+          <p>In this project, I have developed this tiny app makes it easy to download images from the brilliant <b>unsplash.com</b>
+          at a resolution that you specify (for up-to 30 images currently). </p>
         </div>
       </div>
-
-
-
       
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -78,9 +75,23 @@
               <form method='POST' enctype='multipart/form-data'>
                 {% csrf_token %}
                 <div class="form-group">
-                  <input class="form-control" type="text" placeholder="Type Something" name='term'>
+                  <input class="form-control" type="text" placeholder="Type Something" name='term' onkeypress="return /[a-z]/i.test(event.key)">
                 </div>
-                  <input type="submit" class="btn btn-default btn-lg" value='Get Images'>
+                    <div class="row">
+                      <div class="col-xs-12 col-md-4">
+                      <input class="form-control" type="number" placeholder="0-30" name='num' value='5' min='1' max="30">
+                      </div>
+                      <div class="col-xs-12 col-md-4">
+                        <select name="quality" class="form-control">
+                          <option value="raw" selected>4K</option>
+                          <option value="full">Full HD</option>
+                          <option value="regular">HD</option>
+                        </select>
+                      </div>
+                      <div class="col-xs-12 col-md-4">
+                        <input type="submit" class="btn btn-default btn-lg" value='Get Images'>
+                      </div>
+                  </div>
                </form>
                <br>
                {% if file %}
@@ -90,6 +101,9 @@
             <div class="col-xs-12 col-md-4">{% if file %}
               <p><b>{{term}}</b> : Found <b>{{image_count}} images</b> & showing one sample...</p>
               <img src="{{image}}" class="img-responsive" alt="">
+              {% endif %}
+              {% if image_not_found %}
+              {{image_not_found}}
               {% endif %}
             </div>
           </div>
