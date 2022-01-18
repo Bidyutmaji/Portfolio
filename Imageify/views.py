@@ -27,7 +27,7 @@ def imageify(request):
             link = url_content['results']
             image_url = [image['urls'][img_quality] for image in link]
             if image_url:
-                img_url = [image['urls']['regular'] for image in link]
+                img_url = [img['urls']['regular'] for img in link]
 
                 folder_root = os.path.join(settings.MEDIA_ROOT, 'download')
 
@@ -52,7 +52,7 @@ def imageify(request):
                         pass
                 zf.close()
                 context={
-                    'image':img_url,
+                    'image':img_url[0],
                     'file': file,
                     'term':term.title(),
                     'image_count': i
