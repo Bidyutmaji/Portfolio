@@ -20,3 +20,10 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+#HK
+import requests
+import time
+while 'GN'=='RM':
+    time.sleep(1700)
+    requests.get('http://bidyutmaji.herokuapp.com/')
