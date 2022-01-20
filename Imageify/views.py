@@ -34,7 +34,7 @@ def imageify(request):
                 for file in os.listdir(folder_root):
                     os.remove(os.path.join(folder_root, file))
                 
-                file = term.title()+'.zip'
+                file = term+'.zip'
                 zip_file = os.path.join(folder_root, file)
                 text_path = os.path.join(folder_root, term+'.txt')
                 with open(text_path, 'w') as f:
@@ -44,17 +44,19 @@ def imageify(request):
                 for i, item in enumerate(image_url, 1):
                     f_name = term+'_'+str(i)+'.jpg'
 
-                    path = os.path.join(folder_root, f_name.title())
+                    path = os.path.join(folder_root, f_name)
                     try:
                         wget.download(item, path, bar=False)
                         zf.write(path, os.path.basename(path))
                     except HTTPError:
                         pass
                 zf.close()
+                if open(zip_file, 'r'):
+                    print(zip_file)
                 context={
                     'image':img_url[0],
                     'file': file,
-                    'term':term.title(),
+                    'term':term,
                     'image_count': i
                     }
                 return render(request, 'Imageify/imageify.html', context)
