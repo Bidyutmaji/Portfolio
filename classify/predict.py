@@ -1,5 +1,8 @@
 #HARE KRSNA
 print('Hare Krsna')
+import datetime
+print(datetime.datetime.now())
+import os
 if __name__ != '__main__':
     from django.core.files.storage import default_storage
     from django.conf import  settings
@@ -8,15 +11,15 @@ if __name__ != '__main__':
     import tensorflow_hub as hub
     import os
     import numpy as np
-
+    import datetime
 
     def breed(request):
         for file in os.listdir('media'):
             if 'rk'in file:
                 os.remove((os.path.join('media', file)))
         file = default_storage.save('rk.jpg', request.FILES['SentFile'])
-        # file_path = default_storage.url(file)
-
+        print(datetime.datetime.now())
+        
         image = tf.io.read_file('./media/rk.jpg')
         image = tf.image.decode_image(image, channels=3)
         image = tf.image.convert_image_dtype(image, tf.float32)
@@ -32,6 +35,8 @@ if __name__ != '__main__':
         prediction = model.predict(image)
         pred_breed = breeds_name[np.argmax(prediction)]
         pred_breed = pred_breed.replace("'",'')
+        print(datetime.datetime.now())
+
         return pred_breed
 
 

@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from classify import urls
-from Imageify import urls  as im_url
 
 urlpatterns = [
-    path('',include(urls)),
-    path('', include(im_url)),
+    path('',include('classify.urls')),
+    path('', include('Imageify.urls')),
+    path('', include('Moneyfi.urls')),
+    path('', include('Users.urls')),
     path('admin/', admin.site.urls),
 ]

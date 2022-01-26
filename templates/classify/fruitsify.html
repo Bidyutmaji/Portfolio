@@ -43,9 +43,13 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right navbar-small visible-md visible-lg">
-          <li><a href="{% url 'imageify' %}" title="" >001</a></li>
-          <li><a href="{% url 'breedify' %}" title="" >002</a></li>
-          <li><a href="{% url 'fruitsify' %}" title="" class="active">003</a></li>
+          <li><a href="{% url 'moneyfi:moneyfi' %}" title="" >001</a></li>
+          <li><a href="{% url 'imageify' %}" title="">002</a></li>
+          <li><a href="{% url 'breedify' %}" title="" >003</a></li>
+          <li><a href="{% url 'fruitsify' %}" title="" class="active">004</a></li>
+            {% if user.is_authenticated %}
+          <li><a href="{% url 'users:logout' %}" title="">Logout</a></li>
+            {% endif %}
         </ul>
 
 
