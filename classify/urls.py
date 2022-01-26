@@ -1,7 +1,8 @@
 from django.urls import path
-from classify.views import breedify, index, contact, about, works, fruitsify
 from django.conf import settings
 from django.conf.urls.static import static
+
+from classify.views import breedify, index, contact, about, works, fruitsify
 
 urlpatterns = [
     path('',index, name='index' ),

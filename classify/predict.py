@@ -1,18 +1,18 @@
 #HARE KRSNA
 print('Hare Krsna')
 import datetime
-print(datetime.datetime.now())
 import os
+
+from django.core.files.storage import default_storage
+from django.conf import  settings
+import numpy as np
+import tensorflow as tf
+import tensorflow_hub as hub
+
+
+print(datetime.datetime.now())
+
 if __name__ != '__main__':
-    from django.core.files.storage import default_storage
-    from django.conf import  settings
-
-    import tensorflow as tf
-    import tensorflow_hub as hub
-    import os
-    import numpy as np
-    import datetime
-
     def breed(request):
         for file in os.listdir('media'):
             if 'rk'in file:
@@ -44,10 +44,12 @@ def fruits(request):
     for file in os.listdir('media'):
         if 'gn' in file:
             os.remove(os.path.join('media', file))
+
     file = default_storage.save('gn.jpg', request.FILES['SentFile'])
-    print(file)
     model_path = os.path.join(settings.MODELS, 'mobilenet_v2_130_224.h5')
+
     model = tf.keras.models.load_model(model_path, custom_objects={'KerasLayer':hub.KerasLayer})
+
     jps = os.path.join(settings.MODELS, 'apc.txt')
     with open(jps, 'r') as f:
         classes = np.array(f.read().split(sep=','))
@@ -58,5 +60,5 @@ def fruits(request):
 
     pred = model.predict(image_ex)
     pred_class = classes[np.argmax(pred)]
-    # pred_conf = round()
+
     return pred_class

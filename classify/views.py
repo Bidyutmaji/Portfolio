@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from tensorflow.python.eager.context import context
+
 from classify.forms import ContactForm
 from classify.predict import breed, fruits
 

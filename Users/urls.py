@@ -1,7 +1,9 @@
 from django.urls import path
+
 from Users.views import login, logout, signup, verify
 
 app_name = 'users'
+
 urlpatterns = [
     path('users/signup', signup, name='signup'),
     path('users/login', login, name='login'),

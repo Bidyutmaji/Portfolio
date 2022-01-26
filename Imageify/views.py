@@ -1,20 +1,22 @@
+import os
+import requests
 from urllib.error import HTTPError
-from django.shortcuts import render
-import requests as r
 import zipfile
-import wget
+
+from django.shortcuts import render
 from django.conf import settings
-import os 
+import wget
+
 
 def imageify(request):
-    api_key = os.getenv('API_KEY')
-
+    API_KEY = os.getenv('API_KEY')
+    
     if request.method=="POST":
         term = request.POST.get('term')
         img_num = request.POST.get('num')
         img_quality = request.POST.get('quality')
         
-        url = 'https://api.unsplash.com/search/photos/?query='+term+'&per_page='+img_num+'&client_id='+api_key
+        url = 'https://api.unsplash.com/search/photos/?query='+term+'&per_page='+img_num+'&client_id='+API_KEY
         
         text = '''
         I'm Bidyut Maji...
@@ -23,12 +25,12 @@ def imageify(request):
         Thanks For Downloading.
         '''
         try:
-            url_content = r.get(url).json()
+            url_content = requests.get(url).json()
             link = url_content['results']
             image_url = [image['urls'][img_quality] for image in link]
+
             if image_url:
                 img_url = [img['urls']['regular'] for img in link]
-
                 folder_root = os.path.join(settings.MEDIA_ROOT, 'download')
 
                 for file in os.listdir(folder_root):
@@ -51,8 +53,10 @@ def imageify(request):
                     except HTTPError:
                         pass
                 zf.close()
+
                 if open(zip_file, 'r'):
                     print(zip_file)
+
                 context={
                     'image':img_url[0],
                     'file': file,

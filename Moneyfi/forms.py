@@ -1,4 +1,5 @@
 from django.forms import ModelForm, TextInput
+
 from Moneyfi.models import MoneyfiModel
 
 class MoneyfiForm(ModelForm):
