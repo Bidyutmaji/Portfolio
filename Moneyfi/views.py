@@ -65,7 +65,7 @@ def moneyfi(request):
   if request.method=='POST':
       form = MoneyfiForm(request.POST, initial={'mobile':request.user.username})
       if form.is_valid():
-        if request.user.username == 9997775555:
+        if request.user.username == '9997775555':
           form.save(commit=False)
           rk_data = get_data(request)
           context = {
