@@ -22,4 +22,6 @@ urlpatterns = [
     path('', include('Moneyfi.urls')),
     path('', include('Users.urls')),
     path('admin/', admin.site.urls),
+    path('api_auth/', include('rest_framework.urls')),
+
 ]

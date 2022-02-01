@@ -2,9 +2,11 @@ import requests
 
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from rest_framework import viewsets
 
 from Moneyfi.forms import MoneyfiForm
 from Moneyfi.models import MoneyfiModel
+from Moneyfi.serilizers import MfSerializer
 # Create your views here.
 
 
@@ -61,11 +63,13 @@ def get_data(request):
 
 @login_required(login_url='users:login')
 def moneyfi(request):
+  print(type(request.user.username))
+
   rk_data = get_data(request)
   if request.method=='POST':
       form = MoneyfiForm(request.POST, initial={'mobile':request.user.username})
       if form.is_valid():
-        if request.user.username == '9997775555':
+        if request.user.username != '9997775555':
           form.save(commit=False)
           rk_data = get_data(request)
           context = {
@@ -97,8 +101,22 @@ def moneyfi_update(request,mfunits):
   gn_form_data = MoneyfiModel.objects.get(mobile=request.user.username, mf_units=mfunits)
   if request.method=='POST':
       form = MoneyfiForm(request.POST, instance=gn_form_data)
+      print(type(request.user.username))
       if form.is_valid:
-        form.save()
+        if request.user.username == '9997775555':
+          form.save(commit=False)
+          rk_data = get_data(request)
+          context = {
+            'form':form,
+            'rk_data': rk_data
+            }
+        else:
+          form.save()
+          rk_data = get_data(request)
+          context = {
+            'form':form,
+            'rk_data': rk_data
+            }
         return redirect('moneyfi:moneyfi')
   else:
       form = MoneyfiForm(instance=gn_form_data)
@@ -107,8 +125,16 @@ def moneyfi_update(request,mfunits):
         }
       return render(request, 'moneyfi/moneyfi_update.html', context)
 def moneyfi_delete(request, mfunits):
-  gn_form_data = MoneyfiModel.objects.get(mobile=request.user.username, mf_units=mfunits)
-  gn_form_data.delete()
+  if request.user.username != '9997775555':
+    gn_form_data = MoneyfiModel.objects.get(mobile=request.user.username, mf_units=mfunits)
+    gn_form_data.delete()
   return redirect('moneyfi:moneyfi')
+
+
+class MfViewSet(viewsets.ModelViewSet):
+
+  queryset = MoneyfiModel.objects.all()
+
+  serializer_class = MfSerializer
 
 
