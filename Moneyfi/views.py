@@ -133,8 +133,8 @@ def moneyfi_delete(request, mfunits):
 
 class MfViewSet(viewsets.ModelViewSet):
 
-  queryset = MoneyfiModel.objects.all()
+  # queryset = MoneyfiModel.objects.filter(mobile=request.user.username)
 
   serializer_class = MfSerializer
-
-
+  def get_queryset(self):
+    return MoneyfiModel.objects.filter(mobile=self.request.user.username)
