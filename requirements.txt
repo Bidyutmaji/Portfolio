@@ -8,3 +8,4 @@ gunicorn
 pillow
 wget
 httpx
+rest_framework
