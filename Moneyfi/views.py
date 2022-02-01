@@ -129,7 +129,7 @@ def moneyfi_delete(request, mfunits):
     gn_form_data = MoneyfiModel.objects.get(mobile=request.user.username, mf_units=mfunits)
     gn_form_data.delete()
   return redirect('moneyfi:moneyfi')
-
+  
 
 class MfViewSet(viewsets.ModelViewSet):
 
@@ -137,4 +137,4 @@ class MfViewSet(viewsets.ModelViewSet):
 
   serializer_class = MfSerializer
   def get_queryset(self):
-    return MoneyfiModel.objects.filter(mobile=self.request.user.username)
+    return MoneyfiModel.objects.filter(mobile=self.request.GET.get('mobile'))
