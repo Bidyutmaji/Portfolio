@@ -6,7 +6,7 @@ from rest_framework import viewsets
 
 from Moneyfi.forms import MoneyfiForm
 from Moneyfi.models import MoneyfiModel
-from Moneyfi.serilizers import MfSerializer
+from Moneyfi.serializers import MfSerializer
 # Create your views here.
 
 

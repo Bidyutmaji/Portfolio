@@ -55,7 +55,7 @@ def imageify(request):
                     except HTTPError:
                         pass
                 with ThreadPoolExecutor() as rk_excutor:
-                    rk_excutor.map(a_image_download, img_url, g_number)
+                    rk_excutor.map(a_image_download, image_url, g_number)
                 # for i, item in enumerate(image_url, 1):
                 #     f_name = term+'_'+str(i)+'.jpg'
 
